@@ -1,0 +1,114 @@
+<!-- resprite-css v1.0.0 | MIT License
+
+    The calculating CSS properties
+    for two or more responsive background images with the different sizes
+    from sprite
+    
+------------------------------------------>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>resprite-css (for images with equal sizes: in columns, grides, etc)</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .container1,
+        .container2 {
+        /* it can be any width, margin, padding, box-sizing, etc for any container*/
+            margin: 0 auto;
+        }
+
+        .container1 {
+            width: 50%;
+        }
+
+        .container2 {
+            width: 40%;
+        }
+
+        /* Calculating CSS properties for responsible background image from sprite */
+
+        /* Initial data:
+
+        Sprite:
+            spr-width = 382px;
+            spr-height = 556px;
+            background-image: url("img/spr.png");
+        img1:
+            x1 = 40px;
+            y1 = 42px;
+            img1-width = 322px;
+            img1-height = 238px;
+        img2:
+            x2 = 102px;
+            y2 = 310px;
+            img2-width = 260px;
+            img2-height = 226px;
+         */
+
+        /* Note:
+            -it is desirable to leave 1px between images in sprite
+        */
+
+        .img1,
+        .img2 {
+            background-image: url("img/spr.png");
+            width: 100%; /* Our elements fills all inner container space and have the same url */
+        }
+
+        .img1 {
+            /* background-position: xPos1 yPos1;
+            xPos1 = x1 / (spr-width - img1-width) = 40px / (382px - 322px) = 66.66666666666667%
+            yPos1 = y1 / (spr-height - img1-height) = 42px / (556px - 238px) = 13.20754716981132% */
+            background-position: 66.67% 13.21%;
+
+            /* background-size: w h;
+            w = spr-width / img1-width =  382px / 322px = 118.6335403726708%
+            h = spr-height / img1-height1 = 556px / 238px = 233.6134453781513% */
+            background-size: 118.63% 233.61%;
+
+            /* padding-top = img1-height / img1-width = 238px/322px = 73.91304347826087% */
+            padding-top: 73.91%;
+        }
+
+        .img2 {
+            /* background-position: xPos2 yPos2;
+            xPos2 = x2 / (spr-width - img2-width) = 102px / (382px - 260px) = 83.60655737704918%
+            yPos2 = y2 / (spr-height - img2-height) = 310px / (556px - 226px) = 93.93939393939394% */
+            background-position: 83.61% 93.94%;
+
+            /* background-size: w h;
+            w = spr-width / img2-width =  382px / 260px = 146.9230769230769%
+            h = spr-height / img2-height = 556px / 226px = 246.0176991150442% */
+            background-size: 146.92% 246.02%;
+
+            /* padding-top = img2-height / img2-width = 226px/260px = 86.92307692307692% */
+            padding-top: 86.92%;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Hello! I'm very responsive!</h2>
+<div class="container1">
+    <!--Responsive element-->
+    <div class="img1"></div>
+</div>
+<br>
+
+<h2>Hi! I'm very responsive too!</h2>
+<div class="container2">
+    <!--Responsive element-->
+    <div class="img2"></div>
+</div>
+
+</body>
+</html>

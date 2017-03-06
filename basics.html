@@ -1,0 +1,80 @@
+<!-- resprite-css v1.0.0 | MIT License
+
+    Calculating CSS properties for responsible background image from sprite
+
+------------------------------------------>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>resprite-css (basics)</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 50%;             /* any responsive width */
+        }
+
+        /* Calculating CSS properties for responsible background image from sprite */
+
+        /* Initial data:
+        Sprite:
+            sprite-url: url("img/spr.png");
+            spr-width = 382px;
+            spr-height = 556px;
+
+        img1:
+            img1-width = 322px;
+            img1-height = 238px;
+            x1 = 40px;
+            y1 = 42px;
+         */
+
+        /* Note:
+            -all responsive CSS properties must be in %;
+            -approximate the result at least to hundredth;
+        */
+
+        .img1 {
+            /* background-image: url("img/spr.png");*/
+
+            /* background-position: xPos1 yPos1;
+            xPos1 = x1 / (spr-width - img1-width) * 100% = 40px / (382px - 322px) * 100% = 66.67%
+            yPos1 = y1 / (spr-height - img1-height) * 100% = 42px / (556px - 238px) * 100% = 13.21% */
+            /* background-position: 66.67% 13.21%;*/
+            background: url("img/spr.png") 66.67% 13.21%; /*shorthand*/
+
+            /* background-size: w h;
+            w = spr-width / img1-width * 100% =  382px / 322px * 100% = 118.63%
+            h = spr-height / img1-height * 100% = 556px / 238px * 100% = 233.61% */
+            background-size: 118.63% 233.61%;
+
+            /* padding-top = img1-height / img1-width * 100% = 238px/322px * 100% = 73.91% */
+            padding-top: 73.91%;
+
+            /* Our element fills all inner container space */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Hello! I'm very responsive!</h2>
+<!--Any responsive parent container element-->
+<div class="container">
+    <!--Responsive background image element-->
+    <div class="img1"></div>
+</div>
+
+<!--NOTE: There is no need to create redundant parent container element for responsive background image element. In all other examples additional container is only a parent element. If you need to control width or positions of responsive background image element inside parent element, see example basics-pseudo-el.html-->
+
+</body>
+</html>

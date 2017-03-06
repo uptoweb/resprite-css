@@ -1,0 +1,64 @@
+<!-- resprite-css v1.0.0 | MIT License
+
+    The simple instruction:
+    The cross-browser support
+    for responsive background-image
+    from sprite
+
+------------------------------------------- -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>resprite-css (cross browser)</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        /* Note:
+            -all calculations are the same (see single-img.html and other examples);
+            -old browsers do not support background-size property. So we need to add the checking of it and a little of js
+            */
+
+        .bg-img1 {
+            background: url("img/spr.png") 66.67% 13.21%;
+            background-size: 118.63% 233.61%; /*ie9+*/
+            padding-top: 73.91%;
+        }
+
+        /* this code need for support in old browsers */
+        .no-backgroundsize .img1 {
+            height: auto;
+            width: 100%;
+        }
+    </style>
+    <!--Note: Here was used CDN with full modernizr library as showed below, but you can download the custom modernizr library with checking of background-size property-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+<body>
+
+<h2>Hello! I'm very responsive!</h2>
+<div class="container">
+    <!--Responsive element-->
+    <div class="bg-img1"></div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    if ( !Modernizr.backgroundsize ) {
+        $(".bg-img1" ).after('<img class="img1" src="img/cross-br/spaceman.png"/>').remove();
+    }
+</script>
+</body>
+</html>

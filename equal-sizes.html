@@ -1,0 +1,110 @@
+<!-- resprite-css v1.0.0 | MIT License
+
+    Calculating CSS properties
+    for multi-columns or any other background image elements with the same sizes or proportions from sprite.
+
+------------------------------------------>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>resprite-css (for containers with equal sizes)</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+        
+        .clearfix:after {
+            display: table;
+            clear: both;
+            content: " ";
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .row-fluid {
+            width: 90%;             /* any responsive width */
+            margin: 0 auto;
+        }
+
+        .col-2 {
+            float: left;
+            width: 47%;
+            margin-right: 6%;
+            font-family: "Titillium Web", sans-serif;
+            text-align: center;
+        }
+
+        .last {
+            margin-right: 0;
+        }
+
+        /* Calculating CSS properties for responsible background image from sprite */
+
+        /* Initial data:
+        Sprite:
+            spr-width = 382px;
+            spr-height = 556px;
+            background-image: url("img/spr-col.png");
+        imgs:
+            x1 = 40px;
+            y1 = 42px;
+            x2 = 40px;
+            y2 = 298px
+            img1-width = img2-width = img-width = 322px;
+            img1-height = img2-height = img-height = 238px;
+         */
+
+        .img1,
+        .img2 {
+            background-image: url("img/spr-col.png");
+
+            /* background-size: w h;
+            w = spr-width / img-width * 100% =  382px / 322px * 100% = 118.63%
+            h = spr-height / img-height = 556px / 238px * 100% = 233.61% */
+            background-size: 118.63% 233.61%;
+
+            /* padding-top = img1-height / img-width * 100% = 238px/322px * 100% = 73.91% */
+            padding-top: 73.91%;
+
+            /* Our element fills all inner container space*/
+            width: 100%;
+        }
+
+        .img1 {
+            /* background-position: xPos1 yPos1;
+            xPos1 = x1 / (spr-width - img-width) * 100% = 40px / (382px - 322px) * 100% = 66.67%
+            yPos1 = y1 / (spr-height - img-height) * 100% = 42px / (556px - 238px) * 100% = 13.21% */
+            background-position: 66.67% 13.21%;
+        }
+
+        .img2 {
+            /* background-position: xPos2 yPos2;
+            xPos1 = x2 / (spr-width - img-width) * 100% = 40px / (382px - 322px) * 100% = 66.67%
+            yPos2 = y2 / (spr-height - img-height) * 100% = 298px / (556px - 238px) * 100% = 93.71% */
+            background-position: 66.67% 93.71%;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Hello! We are very responsive!</h2>
+
+<div class="row-fluid clearfix">
+    <!--Responsive parent container element-->
+    <div class="col-2">
+        <!--Responsive background image element-->
+        <div class="img1"></div>
+    </div>
+    <!--Responsive parent container element-->
+    <div class="col-2 last">
+        <!--Responsive background image element-->
+        <div class="img2"></div>
+    </div>
+</div>
+
+</body>
+</html>
